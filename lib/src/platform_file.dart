@@ -1,13 +1,11 @@
 import 'dart:async';
-// ignore: unnecessary_import
-import 'dart:typed_data';
 
 import 'package:cross_file/cross_file.dart';
 import 'package:flutter/foundation.dart';
 
 class PlatformFile {
   PlatformFile({
-    this.path,
+    required this.path,
     required this.name,
     required this.size,
     this.bytes,
@@ -31,9 +29,9 @@ class PlatformFile {
   /// ```
   /// final File myFile = File(platformFile.path);
   /// ```
-  /// On web the path points to a Blob URL, if present, which can be cleaned up using [URL.revokeObjectURL].
+  /// On web the path points to a Blob URL, if present, which can be cleaned up using `URL.revokeObjectURL`.
   /// Read more about it [here](https://github.com/miguelpruivo/flutter_file_picker/wiki/FAQ)
-  final String? path;
+  final String path;
 
   /// File name including its extension.
   final String name;
@@ -66,7 +64,7 @@ class PlatformFile {
     if (kIsWeb) {
       return XFile.fromData(bytes!, name: name, length: size);
     } else {
-      return XFile(path!, name: name, bytes: bytes, length: size);
+      return XFile(path, name: name, bytes: bytes, length: size);
     }
   }
 
